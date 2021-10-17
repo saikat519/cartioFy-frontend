@@ -1,19 +1,43 @@
 import "./Login.css" ;
-import {Button} from 'react-bootstrap';
-
+import {Button,Form,Container,Row,Col} from 'react-bootstrap';
+import React, { useState,useEffect } from 'react';
+import axios from 'axios';
 function Login() {
-  return (
-    <div className="loginApp">
-      <label for="email">Email Id: </label>
-      <input type="email" id="email" name="email"></input>
-      <br/><br/>
+  const [email, setEmail] = useState(null);
+  const [pass, setPass] = useState(null);
+  // useEffect(() => {
+  //   axios.
+  // },[])
 
-      <label for="pwd">Password: </label>
-      <input type="password" id="pwd" name="pwd">
-      </input>
-      <br/><br/>
-      <Button variant="outline-primary">Login</Button>{' '}
-    </div>
+  return (
+    <Container className="loginApp m-5">
+    <Form>
+  <Form.Group as={Row} className="mb-3 mt-3" controlId="formPlaintextEmail">
+    <Form.Label column sm="2">
+      Email
+    </Form.Label>
+    <Col sm="10">
+      <Form.Control type="email" placeholder="Email" onChange={(e)=>{
+        setEmail(e.target.value)
+    }}/>
+    </Col>
+  </Form.Group>
+
+  <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+    <Form.Label column sm="2">
+      Password
+    </Form.Label>
+    <Col sm="10">
+      <Form.Control type="password" placeholder="Password" onChange={(e)=>{
+        setPass(e.target.value)
+    }} />
+    </Col>
+        </Form.Group>
+    <Button variant="primary" className="mb-3" type="submit">
+        Submit 
+    </Button>
+</Form>
+    </Container>
 
   );
 }
