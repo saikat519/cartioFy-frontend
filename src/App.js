@@ -22,8 +22,8 @@ function App() {
         }}
       />
 
-      {isLogin?<LoginScreen/>:null}
-      {isSignup?<SignUp/>:null}
+      {isLogin && <LoginScreen/>}
+      {isSignup && <SignUp/>}
 
     </div>
   );
