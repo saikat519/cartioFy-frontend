@@ -32,7 +32,7 @@ function Login() {
   
   useEffect(() => {
     isAuthenticated();
-  });
+  },[]);
 
   const submitHandler = async() => {
     Axios({
