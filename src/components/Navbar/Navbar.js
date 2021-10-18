@@ -1,7 +1,17 @@
-import {NavDropdown,Nav,Navbar,Container} from 'react-bootstrap';
+import React from "react";
+import { NavDropdown, Nav, Navbar, Container } from 'react-bootstrap';
+import { useStateValue } from "../../StateProvider"; 
+import Cookies from 'js-cookie';
 
-
-function Landing({setLogin,setSignup}) {
+function Landing() {
+  const [{ user_id }, dispatch] = useStateValue();
+  const logOut = () => {
+    dispatch({
+      type: "SET_USER",
+      user_id:null
+    })
+    Cookies.remove("Authtoken");
+  }
   return (
     <div className="App">
      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -21,14 +31,20 @@ function Landing({setLogin,setSignup}) {
       </NavDropdown>
     </Nav>
     <Nav>
-      <Nav.Link onClick={
-          setLogin
-      }>Login</Nav.Link>
-      <Nav.Link onClick={
-          setSignup
-      }>
-        SignUp
-      </Nav.Link>
+      {user_id ?
+            <Nav.Link onClick={logOut}>
+              Logout
+            </Nav.Link>
+                :
+            <>
+              <Nav.Link href="/login">
+                Login
+              </Nav.Link>
+              <Nav.Link href="/register">
+                SignUp
+              </Nav.Link>
+            </>
+      }
     </Nav>
   </Navbar.Collapse>
   </Container>
