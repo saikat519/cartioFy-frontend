@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {Button,Form,Container,Row,Col} from 'react-bootstrap';
-import axios from 'axios';
+import Axios from '../../Axios';
+import Cookies from 'js-cookie';
 
 
 function Signup() {
@@ -9,15 +10,17 @@ function Signup() {
     const [pass2, setPass2] = useState(null);
   
   const submitHandler = () => {
-    axios({
+    Axios({
       method: 'post',
-      url: 'http://localhost:5000/api/register',
+      url: '/api/register',
       data: {
         username: email,
         password: pass1
       }
     }).then((res) => {
       console.log(res)
+      Cookies.remove("Authtoken")
+      Cookies.set("Authtoken",res.data.token,{ expires: 5 })
     }).catch(err => {
       console.log(err)
     })

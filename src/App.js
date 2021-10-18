@@ -1,30 +1,39 @@
+import React from 'react';
 import './App.css';
 import LoginScreen from './components/Login/LoginScreen';
-import Landing from './components/LandingPage/Landing';
+import Navbar from './components/Navbar/Navbar';
 import SignUp from './components/SignUp/SignUp';
-import React, { useState } from 'react';
-
+import Home from './components/Home/Home';
+//import { useStateValue } from "./StateProvider"; 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
 function App() {
-  const [isLogin, setisLogin] = useState(false);
-  const [isSignup, setisSignup] = useState(false);
+  //const [{ user_id }, dispatch] = useStateValue();
+  // const [isLogin, setisLogin] = useState(false);
+  // const [isSignup, setisSignup] = useState(false);
   return (
     <div className="App">
-      <Landing
-        setLogin={()=>{
-          setisLogin(true)
-          setisSignup(false)
-        }}
-
-        setSignup={()=>{
-          setisSignup(true)
-          setisLogin(false)
-        }}
-      />
-
-      {isLogin && <LoginScreen/>}
-      {isSignup && <SignUp/>}
-
+      <Router>
+          <Switch>
+          <Route path="/login">
+            <Navbar />
+            <LoginScreen />
+          </Route>
+          <Route path="/register">
+            <Navbar />
+            <SignUp />
+          </Route>
+          <Route path="/">
+            <Navbar/>
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
+  
     </div>
   );
 }
