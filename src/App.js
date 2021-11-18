@@ -35,16 +35,14 @@ function App() {
               />
             }
             {
-              isLogin ?
+              isLogin &&
                 <LoginScreen
                   show={isLogin}
                   onHide={() => setisLogin(false)}
                   openSignup={() => setisSignup(true)}
-                />
-                :
-                <Home/>
+                />               
             }
-            
+            <Home/>
           </Route>
         </Switch>
       </Router>

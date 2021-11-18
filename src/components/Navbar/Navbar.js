@@ -38,10 +38,10 @@ function Landing({setSignup,setLogin,isLogin,isSignup}) {
                 :
             <>
               <Nav.Link onClick={setLogin}>
-                Login
+                Log in
               </Nav.Link>
               <Nav.Link onClick={setSignup}>
-                SignUp
+                Sign up
               </Nav.Link>
             </>
       }

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import {Button,Form,Container,Row,Col,Modal} from 'react-bootstrap';
+import {Button,Row,Col,Modal} from 'react-bootstrap';
 import Axios from '../../Axios';
 import Cookies from 'js-cookie';
 import { TextField } from '@mui/material';
-
+import karolina from '../../images/karolina.jpg'
+import './signUp.css'
 
 
 function Signup(props) {
@@ -39,16 +40,18 @@ function Signup(props) {
         aria-labelledby="contained-modal-title-vcenter"
       >
 
-    <Modal.Header closeButton>
-    </Modal.Header>
+    
 
     <Modal.Body>
     <Row>
-            <Col>1 of 2</Col>
             <Col>
-            <br/><br/>
-            <h3>SignUp</h3>
-            <br/><br/>    
+              <img src={karolina} height={550} width={400} className="signup-img"  />
+            </Col>
+            <Col>
+              <p className="d-flex flex-row-reverse" onClick={props.onHide}><span style={{ cursor:'pointer' }}>&#10006;</span></p>
+              
+            <h3 className="signup-header">Sign up</h3>
+            <br/>   
             <TextField id="outlined-basic" label="Email" variant="outlined" />
             <br/><br/>
             <TextField id="outlined-basic" label="Name" variant="outlined" />
@@ -67,16 +70,19 @@ function Signup(props) {
           autoComplete="current-password"
         />
         <br/><br/>
-              <h7>Already have an account? <span className="register-link" onClick={() => { props.onHide(); props.openLogin();}}>Login Here</span></h7>
+              <h7>Already have an account? <span className="register-link" onClick={() => { props.onHide(); props.openLogin(); }}>Login Here</span></h7>
+              <br /><br />
+          
+          <Button variant="primary" className="ml-5" onClick={props.onHide}>
+            Create Account
+          </Button>
+          
             </Col>
           </Row>
+
      
       </Modal.Body>
-    <Modal.Footer>
-      <Button variant="primary" onClick={props.onHide}>
-        Create Account
-      </Button>
-    </Modal.Footer>
+    
   </Modal>
 
     </div>
