@@ -52,21 +52,23 @@ function Signup(props) {
               
             <h3 className="signup-header">Sign up</h3>
             <br/>   
-            <TextField id="outlined-basic" label="Email" variant="outlined" />
+            <TextField id="outlined-basic" fullWidth label="Email" variant="outlined" />
             <br/><br/>
-            <TextField id="outlined-basic" label="Name" variant="outlined" />
+            <TextField id="outlined-basic" fullWidth label="Name" variant="outlined" />
             <br/><br/>
             <TextField
-          id="outlined-password-input"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
+              id="outlined-password-input"
+              label="Password"
+              type="password"
+              fullWidth
+              autoComplete="current-password"
         />
         <br/><br/>
         <TextField
           id="outlined-password-input"
           label="Confirm Password"
           type="password"
+          fullWidth
           autoComplete="current-password"
         />
         <br/><br/>
