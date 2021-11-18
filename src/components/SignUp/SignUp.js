@@ -67,7 +67,7 @@ function Signup(props) {
           autoComplete="current-password"
         />
         <br/><br/>
-        <h7>Already have an account? Login Here</h7>
+              <h7>Already have an account? <span className="register-link" onClick={() => { props.onHide(); props.openLogin();}}>Login Here</span></h7>
             </Col>
           </Row>
      

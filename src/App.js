@@ -31,6 +31,7 @@ function App() {
               <SignUp
                 show={isSignup}
                 onHide={() => setisSignup(false)}
+                openLogin={() => setisLogin(true)}
               />
             }
             {
@@ -38,6 +39,7 @@ function App() {
                 <LoginScreen
                   show={isLogin}
                   onHide={() => setisLogin(false)}
+                  openSignup={() => setisSignup(true)}
                 />
                 :
                 <Home/>

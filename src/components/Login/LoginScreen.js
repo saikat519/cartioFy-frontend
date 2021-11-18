@@ -73,7 +73,7 @@ function Login(props) {
     </Modal.Header>
         
         <Modal.Body>
-        <Container>
+        
           <Row>
             <Col>1 of 2</Col>
             <Col>
@@ -84,17 +84,17 @@ function Login(props) {
             
             <br/><br/>
             <TextField
-          id="outlined-password-input"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-        />
+              id="outlined-password-input"
+              label="Password"
+              type="password"
+              autoComplete="current-password"
+            />
         <br/><br/>
         <h7>Forgot Password ?</h7><br/>
-        <h7>New to Cartiofy? Register Here</h7>
+        <h7>New to Cartiofy? <span className="register-link" onClick={() => { props.onHide(); props.openSignup();}}>Register here</span></h7>
             </Col>
           </Row>
-          </Container>
+          
         
         </Modal.Body>
        
