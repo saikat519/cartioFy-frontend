@@ -4,6 +4,8 @@ import React, { useState,useEffect } from 'react';
 import Axios from '../../Axios';
 import Cookies from 'js-cookie';
 import { useStateValue } from "../../StateProvider"; 
+import { TextField } from '@mui/material';
+
 
 function Login(props) {
   const [email, setEmail] = useState(null);
@@ -66,19 +68,40 @@ function Login(props) {
         aria-labelledby="contained-modal-title-vcenter"
 
       >
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
+
+    <Modal.Header closeButton>
+    </Modal.Header>
         
         <Modal.Body>
-          Woohoo, you're reading this text in a modal!
+        <Container>
+          <Row>
+            <Col>1 of 2</Col>
+            <Col>
+            <br/><br/>
+            <h3>LOGIN</h3>
+            <br/>
+            <TextField id="outlined-basic" label="Username" variant="outlined" />
+            
+            <br/><br/>
+            <TextField
+          id="outlined-password-input"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+        />
+        <br/><br/>
+        <h7>Forgot Password ?</h7><br/>
+        <h7>New to Cartiofy? Register Here</h7>
+            </Col>
+          </Row>
+          </Container>
         
         </Modal.Body>
        
        
         <Modal.Footer>
           <Button variant="primary" onClick={props.onHide}>
-            Close
+            Login
           </Button>
           
         </Modal.Footer>

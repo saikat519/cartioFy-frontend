@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import {Button,Form,Container,Row,Col,Modal} from 'react-bootstrap';
 import Axios from '../../Axios';
 import Cookies from 'js-cookie';
+import { TextField } from '@mui/material';
+
 
 
 function Signup(props) {
@@ -36,13 +38,43 @@ function Signup(props) {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
       >
+
     <Modal.Header closeButton>
-      <Modal.Title>Modal heading</Modal.Title>
     </Modal.Header>
-    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+
+    <Modal.Body>
+    <Row>
+            <Col>1 of 2</Col>
+            <Col>
+            <br/><br/>
+            <h3>SignUp</h3>
+            <br/><br/>    
+            <TextField id="outlined-basic" label="Email" variant="outlined" />
+            <br/><br/>
+            <TextField id="outlined-basic" label="Name" variant="outlined" />
+            <br/><br/>
+            <TextField
+          id="outlined-password-input"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+        />
+        <br/><br/>
+        <TextField
+          id="outlined-password-input"
+          label="Confirm Password"
+          type="password"
+          autoComplete="current-password"
+        />
+        <br/><br/>
+        <h7>Already have an account? Login Here</h7>
+            </Col>
+          </Row>
+     
+      </Modal.Body>
     <Modal.Footer>
       <Button variant="primary" onClick={props.onHide}>
-        Close
+        Create Account
       </Button>
     </Modal.Footer>
   </Modal>
