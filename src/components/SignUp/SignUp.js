@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import {Button,Form,Container,Row,Col} from 'react-bootstrap';
+import {Button,Form,Container,Row,Col,Modal} from 'react-bootstrap';
 import Axios from '../../Axios';
 import Cookies from 'js-cookie';
 
 
-function Signup() {
+function Signup(props) {
     const [email, setEmail] = useState(null);
     const [pass1, setPass1] = useState(null);
     const [pass2, setPass2] = useState(null);
@@ -29,46 +29,25 @@ function Signup() {
 
   return (
       
-    <Container className="loginApp m-5">
-    <Form>
-  <Form.Group as={Row} className="mb-3 mt-3" controlId="formPlaintextEmail">
-    <Form.Label column sm="2">
-      Email
-    </Form.Label>
-    <Col sm="10">
-      <Form.Control type="email" placeholder="Email" onChange={(e)=>{
-        setEmail(e.target.value)
-    }} />
-    </Col>
-  </Form.Group>
+    <div>
+      <Modal
+        show={props.show}
+        onHide={props.onHide}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+      >
+    <Modal.Header closeButton>
+      <Modal.Title>Modal heading</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+    <Modal.Footer>
+      <Button variant="primary" onClick={props.onHide}>
+        Close
+      </Button>
+    </Modal.Footer>
+  </Modal>
 
-  <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-    <Form.Label column sm="2">
-      Password
-    </Form.Label>
-    <Col sm="10">
-      <Form.Control type="password" placeholder="Password" onChange={(e)=>{
-        setPass1(e.target.value)
-    }}/>
-    </Col>
-  </Form.Group>
-        
-  <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-    <Form.Label column sm="2">
-      Confirm Password
-    </Form.Label>
-    <Col sm="10">
-      <Form.Control type="password" placeholder="Confirm Password" onChange={(e)=>{
-        setPass2(e.target.value)
-    }} />
-    </Col>
-  </Form.Group>
-    <Button variant="primary" className="mb-3" onClick={submitHandler}>
-        SignUp
-    </Button>
-      </Form>
-      
-    </Container>
+    </div>
 
   );
 }

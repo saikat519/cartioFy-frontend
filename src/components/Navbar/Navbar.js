@@ -3,7 +3,7 @@ import { NavDropdown, Nav, Navbar, Container } from 'react-bootstrap';
 import { useStateValue } from "../../StateProvider"; 
 import Cookies from 'js-cookie';
 
-function Landing() {
+function Landing({setSignup,setLogin,isLogin,isSignup}) {
   const [{ user_id }, dispatch] = useStateValue();
   const logOut = () => {
     dispatch({
@@ -37,10 +37,10 @@ function Landing() {
             </Nav.Link>
                 :
             <>
-              <Nav.Link href="/login">
+              <Nav.Link onClick={setLogin}>
                 Login
               </Nav.Link>
-              <Nav.Link href="/register">
+              <Nav.Link onClick={setSignup}>
                 SignUp
               </Nav.Link>
             </>

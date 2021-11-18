@@ -1,11 +1,11 @@
 import "./Login.css" ;
-import {Button,Form,Container,Row,Col} from 'react-bootstrap';
+import {Button,Form,Container,Row,Col,Modal} from 'react-bootstrap';
 import React, { useState,useEffect } from 'react';
 import Axios from '../../Axios';
 import Cookies from 'js-cookie';
 import { useStateValue } from "../../StateProvider"; 
 
-function Login() {
+function Login(props) {
   const [email, setEmail] = useState(null);
   const [pass, setPass] = useState(null);
   const [{ user_id }, dispatch] = useStateValue();
@@ -56,38 +56,35 @@ function Login() {
       console.log(err)
     })
   }
- 
 
   return (
-    <Container className="loginApp m-5">
-    <Form>
-  <Form.Group as={Row} className="mb-3 mt-3" controlId="formPlaintextEmail">
-    <Form.Label column sm="2">
-      Email
-    </Form.Label>
-    <Col sm="10">
-      <Form.Control type="email" placeholder="Email" onChange={(e)=>{
-        setEmail(e.target.value)
-    }}/>
-    </Col>
-  </Form.Group>
+    <div>
+      <Modal
+        show={props.show}
+        onHide={props.onHide}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
 
-  <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-    <Form.Label column sm="2">
-      Password
-    </Form.Label>
-    <Col sm="10">
-      <Form.Control type="password" placeholder="Password" onChange={(e)=>{
-        setPass(e.target.value)
-    }} />
-    </Col>
-        </Form.Group>
-    <Button variant="primary" className="mb-3" onClick={submitHandler}>
-        Login 
-    </Button>
-      </Form>
-      <h3>User Id: {user_id}</h3>
-    </Container>
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        
+        <Modal.Body>
+          Woohoo, you're reading this text in a modal!
+        
+        </Modal.Body>
+       
+       
+        <Modal.Footer>
+          <Button variant="primary" onClick={props.onHide}>
+            Close
+          </Button>
+          
+        </Modal.Footer>
+      </Modal>
+
+    </div>
 
   );
 }
