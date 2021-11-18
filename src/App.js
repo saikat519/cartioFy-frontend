@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './App.css';
 import LoginScreen from './components/Login/LoginScreen';
 import Navbar from './components/Navbar/Navbar';
@@ -13,23 +13,36 @@ import {
 
 function App() {
   //const [{ user_id }, dispatch] = useStateValue();
-  // const [isLogin, setisLogin] = useState(false);
-  // const [isSignup, setisSignup] = useState(false);
+  const [isLogin, setisLogin] = useState(false);
+  const [isSignup, setisSignup] = useState(false);
+  console.log("isLogin",isLogin)
   return (
     <div className="App">
       <Router>
           <Switch>
-          <Route path="/login">
-            <Navbar />
-            <LoginScreen />
-          </Route>
-          <Route path="/register">
-            <Navbar />
-            <SignUp />
-          </Route>
+          
           <Route path="/">
-            <Navbar/>
-            <Home />
+            <Navbar
+              setLogin={() =>{ setisLogin(!isLogin) }}
+              setSignup={() =>{ setisSignup(!isSignup) }}
+            />
+            {
+              isSignup &&
+              <SignUp
+                show={isSignup}
+                onHide={() => setisSignup(false)}
+              />
+            }
+            {
+              isLogin ?
+                <LoginScreen
+                  show={isLogin}
+                  onHide={() => setisLogin(false)}
+                />
+                :
+                <Home/>
+            }
+            
           </Route>
         </Switch>
       </Router>
