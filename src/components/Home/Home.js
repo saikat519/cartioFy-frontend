@@ -2,6 +2,7 @@ import React from 'react'
 import {Carousel} from 'react-bootstrap'
 import karolina from '../../images/karolina.jpg'
 import headphone from '../../images/headphone.jpg'
+import Productslider from '../Productslider/Productslider'
 
 function Home() {
     return (
@@ -12,7 +13,7 @@ function Home() {
       className="d-block w-100"
       src={headphone}
       alt="First slide"
-      height={400}
+      height={600}
     />
     
   </Carousel.Item>
@@ -21,7 +22,7 @@ function Home() {
       className="d-block w-100"
       src={karolina}
       alt="Second slide"
-      height={400}
+      height={600}
     />
     
   </Carousel.Item>
@@ -30,11 +31,12 @@ function Home() {
       className="d-block w-100"
       src={headphone}
       alt="Third slide"
-      height={400}
+      height={600}
     />
     
   </Carousel.Item>
 </Carousel>
+<Productslider/>
         </div>
     )
 }
