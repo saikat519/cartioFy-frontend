@@ -1,7 +1,6 @@
 import React from "react";
 import { NavDropdown, Nav, Navbar, Container } from 'react-bootstrap';
 import { useStateValue } from "../../StateProvider"; 
-import Cookies from 'js-cookie';
 
 function Landing({setSignup,setLogin,isLogin,isSignup}) {
   const [{ user }, dispatch] = useStateValue();
