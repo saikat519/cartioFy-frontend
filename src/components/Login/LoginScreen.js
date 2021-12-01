@@ -1,6 +1,6 @@
 import "./Login.css" ;
 import {Button,Row,Col,Modal} from 'react-bootstrap';
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import Axios from '../../Axios';
 import Cookies from 'js-cookie';
 import { useStateValue } from "../../StateProvider"; 
