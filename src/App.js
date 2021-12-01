@@ -10,7 +10,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import Axios from './Axios';
+//import Axios from './Axios';
 import {auth} from './firebase'
 
 function App() {
@@ -41,7 +41,7 @@ function App() {
       }
     });
     console.log('useEffect>>user>>',user)
-  },[]);
+  },[user]);
   return (
     <div className="App">
       <Router>
