@@ -1,8 +1,8 @@
 import "./Login.css" ;
 import {Button,Row,Col,Modal} from 'react-bootstrap';
 import React, { useState } from 'react';
-import Axios from '../../Axios';
-import Cookies from 'js-cookie';
+//import Axios from '../../Axios';
+//import Cookies from 'js-cookie';
 import { useStateValue } from "../../StateProvider"; 
 import { TextField } from '@mui/material';
 import loginPage from '../../images/login-page.jpg'
@@ -13,7 +13,7 @@ function Login(props) {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
-  const [{user}, dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue();
 
   // var isAuthenticated = async () => {
   //   //console.log("api called")
@@ -70,7 +70,7 @@ function Login(props) {
         <Modal.Body>
           <Row>
             <Col>
-            <img src={loginPage} height={550} width={400} className="signup-img"  />
+            <img src={loginPage} height={550} width={400} className="signup-img" alt="login image" />
             </Col>
             <Col>
             <p className="d-flex flex-row-reverse" onClick={props.onHide}><span style={{ cursor:'pointer' }}>&#10006;</span></p>
