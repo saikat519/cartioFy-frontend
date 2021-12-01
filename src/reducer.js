@@ -1,6 +1,6 @@
 export const initialState = {
     cart: [],
-    user_id: null,
+    user: null,
   };
 
   // Selector
@@ -51,7 +51,7 @@ cart?.reduce((amount, item) => item.price + amount, 0);
       case "SET_USER":
         return {
           ...state,
-          user_id: action.user_id
+          user: action.user
         }
         
       default:
