@@ -15,7 +15,7 @@ function Signup(props) {
     const [name, setName] = useState('');
     const [pass1, setPass1] = useState('');
     const [pass2, setPass2] = useState('');
-    const [{ }, dispatch] = useStateValue();
+    const [{}, dispatch] = useStateValue();
   
   const submitHandler = async() => {
     
@@ -64,7 +64,7 @@ function Signup(props) {
     <Modal.Body>
     <Row>
             <Col>
-              <img src={karolina} height={550} width={400} className="signup-img" alt="signup image"  />
+              <img src={karolina} height={550} width={400} className="signup-img" alt="signup-img"  />
             </Col>
             <Col>
               <p className="d-flex flex-row-reverse" onClick={props.onHide}><span style={{ cursor:'pointer' }}>&#10006;</span></p>

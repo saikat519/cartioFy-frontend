@@ -34,7 +34,8 @@ function Home() {
           />
           
         </Carousel.Item>
-      </Carousel>
+        </Carousel>
+        
       
     </div>
     )

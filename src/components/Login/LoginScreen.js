@@ -12,7 +12,9 @@ import { auth } from "../../firebase";
 function Login(props) {
   const history = useHistory();
   const [email, setEmail] = useState('');
+  const [forgotEmail, setForgotEmail] = useState('');
   const [pass, setPass] = useState('');
+  const [forgotPass, setForgotPass] = useState(false);
   const [{}, dispatch] = useStateValue();
 
   // var isAuthenticated = async () => {
@@ -39,6 +41,16 @@ function Login(props) {
   // useEffect(() => {
   //   isAuthenticated();
   // },[]);
+
+  const forgotPassword = (Email) => {
+    auth.sendPasswordResetEmail(Email)
+        .then(function () {
+            alert('Please check your email...')
+        }).catch(function (e) {
+            console.log(e)
+        }) 
+    
+    }
 
   const submitHandler = async () => {
     auth.signInWithEmailAndPassword(email, pass)
@@ -70,13 +82,25 @@ function Login(props) {
         <Modal.Body>
           <Row>
             <Col>
-            <img src={loginPage} height={550} width={400} className="signup-img" alt="login image" />
+            <img src={loginPage} height={550} width={400} className="signup-img" alt="login-img" />
             </Col>
             <Col>
             <p className="d-flex flex-row-reverse" onClick={props.onHide}><span style={{ cursor:'pointer' }}>&#10006;</span></p>
-            <br/><br/>
-            <h3>LOGIN</h3>
-            <br/>
+              <br />
+              <br />
+              <h3>{!forgotPass?"LOGIN":"Forget Password"}</h3>
+              <br />
+              {forgotPass ?
+                <TextField
+                  id="outlined-basic"
+                  label="Email"
+                  variant="outlined"
+                  fullWidth
+                  value={forgotEmail}
+                  onChange={(e) => setForgotEmail(e.target.value)}
+                />
+                :
+                <>
               <TextField
                 id="outlined-basic"
                 label="Email"
@@ -86,7 +110,7 @@ function Login(props) {
                 onChange={(e)=>setEmail(e.target.value)}
               />
             
-            <br/><br/>
+            <br /><br />
             <TextField
               id="outlined-password-input"
               label="Password"
@@ -95,15 +119,26 @@ function Login(props) {
               autoComplete="current-password"
               value={pass}
               onChange={(e)=>setPass(e.target.value)}
-              />
+                  />
+                  </>
+              }
+              { !forgotPass ?
+              <>  
               <br/><br/>
               <Button variant="primary" onClick={() => { submitHandler();}}>
             Login
           </Button>
         <br/><br/>
-        <p>Forgot Password ?</p>
+        <p className="register-link" onClick={()=>setForgotPass(true)}>Forgot Password ?</p>
         <p>New to Cartiofy? <span className="register-link" onClick={() => { props.onHide(); props.openSignup();}}>Register here</span></p>
-            </Col>
+                </> :
+                <> <br /><br />
+              <Button variant="primary" onClick={() => { forgotPassword(forgotEmail);}}>
+                Submit
+              </Button>
+                </>
+        }    
+        </Col>
           </Row>
           
         
