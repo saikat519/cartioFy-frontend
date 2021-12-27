@@ -37,6 +37,7 @@ function Home() {
   </Carousel.Item>
 </Carousel>
 <Productslider/>
+
         </div>
     )
 }
