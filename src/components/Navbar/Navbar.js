@@ -1,16 +1,14 @@
 import React from "react";
 import { NavDropdown, Nav, Navbar, Container } from 'react-bootstrap';
 import { useStateValue } from "../../StateProvider"; 
-import Cookies from 'js-cookie';
 
 function Landing({setSignup,setLogin,isLogin,isSignup}) {
-  const [{ user_id }, dispatch] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
   const logOut = () => {
     dispatch({
       type: "SET_USER",
-      user_id:null
+      user:null
     })
-    Cookies.remove("Authtoken");
   }
   return (
     <div className="App">
@@ -31,7 +29,7 @@ function Landing({setSignup,setLogin,isLogin,isSignup}) {
       </NavDropdown>
     </Nav>
     <Nav>
-      {user_id ?
+      {user ?
             <Nav.Link onClick={logOut}>
               Logout
             </Nav.Link>

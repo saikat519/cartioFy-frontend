@@ -1,61 +1,72 @@
 import "./Login.css" ;
-import {Button,Form,Container,Row,Col,Modal} from 'react-bootstrap';
-import React, { useState,useEffect } from 'react';
-import Axios from '../../Axios';
-import Cookies from 'js-cookie';
+import {Button,Row,Col,Modal} from 'react-bootstrap';
+import React, { useState } from 'react';
+//import Axios from '../../Axios';
+//import Cookies from 'js-cookie';
 import { useStateValue } from "../../StateProvider"; 
 import { TextField } from '@mui/material';
-
+import loginPage from '../../images/login-page.jpg'
+import { useHistory } from "react-router-dom";
+import { auth } from "../../firebase";
 
 function Login(props) {
-  const [email, setEmail] = useState(null);
-  const [pass, setPass] = useState(null);
-  const [{ user_id }, dispatch] = useStateValue();
+  const history = useHistory();
+  const [email, setEmail] = useState('');
+  const [forgotEmail, setForgotEmail] = useState('');
+  const [pass, setPass] = useState('');
+  const [forgotPass, setForgotPass] = useState(false);
+  const [{}, dispatch] = useStateValue();
 
-  var isAuthenticated = async () => {
-    //console.log("api called")
-    let authtoken = Cookies.get('Authtoken')
-    //console.log("authtoken>>>>>", authtoken)
-    await Axios.get('/api/login', {
-      params: {
-        token: authtoken
-      }
-    })
-      .then(res => {
-        //console.log(">res>",res)
+  // var isAuthenticated = async () => {
+  //   //console.log("api called")
+  //   let authtoken = Cookies.get('Authtoken')
+  //   //console.log("authtoken>>>>>", authtoken)
+  //   await Axios.get('/api/login', {
+  //     params: {
+  //       token: authtoken
+  //     }
+  //   })
+  //     .then(res => {
+  //       //console.log(">res>",res)
+  //       dispatch({
+  //         type: "SET_USER",
+  //         user_id: res.data.user_id,
+  //       });
+  //       props.onHide();
+  //   }).catch(err => {
+  //     console.log(err)
+  //   })
+  // }
+  
+  // useEffect(() => {
+  //   isAuthenticated();
+  // },[]);
+
+  const forgotPassword = (Email) => {
+    auth.sendPasswordResetEmail(Email)
+        .then(function () {
+            alert('Please check your email...')
+        }).catch(function (e) {
+            console.log(e)
+        }) 
+    
+    }
+
+  const submitHandler = async () => {
+    auth.signInWithEmailAndPassword(email, pass)
+      .then(auth => {
+        console.log('login successful>>', auth)
         dispatch({
           type: "SET_USER",
-          user_id: res.data.user_id,
+          user: auth.user,
         });
-    }).catch(err => {
-      console.log(err)
+        props.onHide();
+        history.push('/')
     })
-  }
-  
-  useEffect(() => {
-    isAuthenticated();
-  },[]);
-
-  const submitHandler = async() => {
-    Axios({
-      method: 'post',
-      url: '/api/login',
-      data: {
-        username: email,
-        password: pass
-      }
-    }).then((response) => {
-      console.log(response)
-      if (response.data.message) {
-        console.log(response.data.message)
-      } else {
-        console.log("response>>", response)
-        Cookies.remove("Authtoken")
-        Cookies.set("Authtoken", response.data.token, { expires: 5 })
-        isAuthenticated();
-      }
-    }).catch(err => {
-      console.log(err)
+    .catch(err =>{
+        // setErrmsg(error.message);
+        // setShow(true);
+      alert(err.message)
     })
   }
 
@@ -67,44 +78,72 @@ function Login(props) {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
 
-      >
-
-    <Modal.Header closeButton>
-    </Modal.Header>
-        
+      >        
         <Modal.Body>
-        
           <Row>
-            <Col>1 of 2</Col>
             <Col>
-            <br/><br/>
-            <h3>LOGIN</h3>
-            <br/>
-            <TextField id="outlined-basic" label="Username" variant="outlined" />
+            <img src={loginPage} height={550} width={400} className="signup-img" alt="login-img" />
+            </Col>
+            <Col>
+            <p className="d-flex flex-row-reverse" onClick={props.onHide}><span style={{ cursor:'pointer' }}>&#10006;</span></p>
+              <br />
+              <br />
+              <h3>{!forgotPass?"LOGIN":"Forget Password"}</h3>
+              <br />
+              {forgotPass ?
+                <TextField
+                  id="outlined-basic"
+                  label="Email"
+                  variant="outlined"
+                  fullWidth
+                  value={forgotEmail}
+                  onChange={(e) => setForgotEmail(e.target.value)}
+                />
+                :
+                <>
+              <TextField
+                id="outlined-basic"
+                label="Email"
+                variant="outlined"
+                fullWidth
+                value={email}
+                onChange={(e)=>setEmail(e.target.value)}
+              />
             
-            <br/><br/>
+            <br /><br />
             <TextField
               id="outlined-password-input"
               label="Password"
               type="password"
+              fullWidth
               autoComplete="current-password"
-            />
+              value={pass}
+              onChange={(e)=>setPass(e.target.value)}
+                  />
+                  </>
+              }
+              { !forgotPass ?
+              <>  
+              <br/><br/>
+              <Button variant="primary" onClick={() => { submitHandler();}}>
+            Login
+          </Button>
         <br/><br/>
-        <h7>Forgot Password ?</h7><br/>
-        <h7>New to Cartiofy? <span className="register-link" onClick={() => { props.onHide(); props.openSignup();}}>Register here</span></h7>
-            </Col>
+        <p className="register-link" onClick={()=>setForgotPass(true)}>Forgot Password ?</p>
+        <p>New to Cartiofy? <span className="register-link" onClick={() => { props.onHide(); props.openSignup();}}>Register here</span></p>
+                </> :
+                <> <br /><br />
+              <Button variant="primary" onClick={() => { forgotPassword(forgotEmail);}}>
+                Submit
+              </Button>
+                </>
+        }    
+        </Col>
           </Row>
           
         
         </Modal.Body>
-       
-       
-        <Modal.Footer>
-          <Button variant="primary" onClick={props.onHide}>
-            Login
-          </Button>
-          
-        </Modal.Footer>
+
       </Modal>
 
     </div>

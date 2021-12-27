@@ -1,32 +1,51 @@
 import React, { useState } from 'react';
 import {Button,Row,Col,Modal} from 'react-bootstrap';
 import Axios from '../../Axios';
-import Cookies from 'js-cookie';
 import { TextField } from '@mui/material';
 import karolina from '../../images/karolina.jpg'
 import './signUp.css'
+import { useHistory } from "react-router-dom";
+import { auth } from "../../firebase";
+import { useStateValue } from "../../StateProvider"; 
 
 
 function Signup(props) {
-    const [email, setEmail] = useState(null);
-    const [pass1, setPass1] = useState(null);
-    const [pass2, setPass2] = useState(null);
+    const history = useHistory();
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [pass1, setPass1] = useState('');
+    const [pass2, setPass2] = useState('');
+    const [{}, dispatch] = useStateValue();
   
-  const submitHandler = () => {
-    Axios({
-      method: 'post',
-      url: '/api/register',
-      data: {
-        username: email,
-        password: pass1
-      }
-    }).then((res) => {
-      console.log(res)
-      Cookies.remove("Authtoken")
-      Cookies.set("Authtoken",res.data.token,{ expires: 5 })
-    }).catch(err => {
-      console.log(err)
-    })
+  const submitHandler = async() => {
+    
+    await auth.createUserWithEmailAndPassword(email, pass1)
+        .then((auth) => {
+            // it successfully created a new user with email and password
+          if (auth) {
+            Axios({
+              method: 'post',
+              url: '/api/register',
+              data: {
+                email: email,
+                name:name
+              }
+            }).then((res) => {
+              console.log("user saved in database>>>",res)
+              
+            }).catch(err => {
+              console.log(err)
+            })
+            console.log('user registered in firebase>>>', auth)
+            dispatch({
+              type: "SET_USER",
+              user: auth.user,
+            });
+                props.onHide();
+                history.push('/')
+            }
+        })
+        .catch(error => alert(error.message))
       
   }
 
@@ -45,16 +64,24 @@ function Signup(props) {
     <Modal.Body>
     <Row>
             <Col>
-              <img src={karolina} height={550} width={400} className="signup-img"  />
+              <img src={karolina} height={550} width={400} className="signup-img" alt="signup-img"  />
             </Col>
             <Col>
               <p className="d-flex flex-row-reverse" onClick={props.onHide}><span style={{ cursor:'pointer' }}>&#10006;</span></p>
               
             <h3 className="signup-header">Sign up</h3>
             <br/>   
-            <TextField id="outlined-basic" fullWidth label="Email" variant="outlined" />
+              <TextField id="outlined-basic"
+                fullWidth
+                label="Email" variant="outlined"
+                value={email}
+                onChange={(e)=>setEmail(e.target.value)}
+              />
             <br/><br/>
-            <TextField id="outlined-basic" fullWidth label="Name" variant="outlined" />
+              <TextField id="outlined-basic" fullWidth label="Name" variant="outlined"
+              value={name}
+              onChange={(e)=>setName(e.target.value)}
+              />
             <br/><br/>
             <TextField
               id="outlined-password-input"
@@ -62,6 +89,8 @@ function Signup(props) {
               type="password"
               fullWidth
               autoComplete="current-password"
+              value={pass1}
+              onChange={(e)=>setPass1(e.target.value)}
         />
         <br/><br/>
         <TextField
@@ -70,15 +99,16 @@ function Signup(props) {
           type="password"
           fullWidth
           autoComplete="current-password"
+          value={pass2}
+          onChange={(e)=>setPass2(e.target.value)}
         />
+              <br/><br/>
+              <Button variant="primary" className="ml-5" onClick={() => { submitHandler(); }}>
+              Create Account
+            </Button>
         <br/><br/>
-              <h7>Already have an account? <span className="register-link" onClick={() => { props.onHide(); props.openLogin(); }}>Login Here</span></h7>
-              <br /><br />
-          
-          <Button variant="primary" className="ml-5" onClick={props.onHide}>
-            Create Account
-          </Button>
-          
+              <p>Already have an account? <span className="register-link" onClick={() => { props.onHide(); props.openLogin(); }}>Login Here</span></p>
+
             </Col>
           </Row>
 
