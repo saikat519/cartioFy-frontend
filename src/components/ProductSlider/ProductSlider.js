@@ -6,7 +6,7 @@ import './ProductSlider.css';
 import Button from '@mui/material/Button';
 import {Row,Col} from 'react-bootstrap'
 
-function ProductSlider() {
+function ProductSlider(props) {
     const responsive = {
 
         superLargeDesktop: {
@@ -35,7 +35,7 @@ function ProductSlider() {
     return (
         <div className='prod-slider'>
             <Row>
-            <Col className='d-flex flex-row'><span className='prod-header'>Trending Offers</span></Col>
+                <Col className='d-flex flex-row'><span className='prod-header'>{props.headerLine}</span></Col>
             <Col></Col>
             <Col></Col>
             <Col className='d-flex flex-row-reverse'><Button variant="contained" className='m-3'>VIEW ALL</Button></Col>

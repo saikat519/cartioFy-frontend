@@ -41,7 +41,9 @@ function Home(props) {
         </div>
         <br/><br/>
         <div className='products-slider'>
-          <Productslider />
+          <Productslider
+            headerLine="Trending Offers"
+          />
         </div>
       
         <br/>
