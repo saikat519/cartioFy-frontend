@@ -97,12 +97,12 @@ export default function Navbar(props) {
                 component="div"
                 edge="start"
                 color="inherit"
-                sx={{ mr: 4 }}
+                sx={{ mr: 2 }}
               >
                 Cartiofy
               </Typography>
           </Link>
-          <Search sx={{ mr: 15 }} style={{border:"1px solid black"}}>
+          <Search style={{border:"1px solid black"}}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -111,26 +111,27 @@ export default function Navbar(props) {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
+          <div className='d-flex justify-content-end flex-grow-1'>
           {user ?
-            <Button color="inherit" onClick={logOut} sx={{mr:4}}>LOG OUT</Button>
+            <Button className='btn-auth' onClick={logOut} sx={{mr:4}}>LOG OUT</Button>
             :
             
           <>
-          <Button color="inherit" onClick={setSignup}>SIGN UP</Button>
-          <Button color="inherit" onClick={setLogin} sx={{mr:4}}>LOGIN</Button>
+          <Button className='btn-auth' onClick={setSignup} sx={{mr:4}}>SIGN UP</Button>
+          <Button className='btn-auth' onClick={setLogin} sx={{mr:4}}>LOGIN</Button>
           </>
           }
           <Link to='/cart'>
             <div className="header__optionBasket">
-            <span className="header__optionBasket__icon">
+            <span className="header__optionBasket__icon mt-3">
             <AddShoppingCartSharpIcon  style={{ fontSize: 29 }}/>
             </span>
-            <span className="header__basketCount">
+            <span className="header__basketCount mt-3">
               {cart?.length}
             </span>
             </div>
           </Link>
-          
+          </div>
         </Toolbar>
         
       </AppBar>
