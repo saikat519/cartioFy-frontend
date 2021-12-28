@@ -1,0 +1,54 @@
+.header__searchIcon {
+    padding: 2px;
+    height: 32px !important;
+    width:35px;
+    background-color: #e09129;
+  }
+  
+  
+  .header__searchIcon:hover {
+    cursor: pointer;
+  }
+  
+  .header__optionLineOne {
+    font-size: 12px;
+  }
+  
+  .header__optionLineTwo {
+    font-size: 13px;
+    font-weight: 700;
+  }
+  
+  .header__optionBasket {
+    display: flex;
+    align-items: center;
+    color: white;
+    
+  }
+  
+  .header__basketCount {
+    margin-left: 10px;
+    margin-right: 10px;
+    color:black;
+    font-weight: 400;
+    font-size: 18px;
+  }
+  .header__optionBasket__icon {
+    padding:5px;
+    color:black;
+    margin-left: 20px;
+  }
+.header__basketCount:hover{
+    color:#e09129;
+}
+ 
+
+.header__optionBasket__icon:hover {
+    color:#e09129;
+}
+
+a:link{
+    text-decoration: none!important;
+}
+
+    

@@ -43,7 +43,19 @@ function Home(props) {
         <div className='products-slider'>
           <Productslider
             headerLine="Trending Offers"
-          />
+          /><br/><br/>
+          <Productslider
+          headerLine="Fashion"
+          /><br/><br/>
+          <Productslider
+          headerLine="Electronics"
+          /><br/><br/>
+          <Productslider
+          headerLine="Home appliances"
+          /><br/><br/>
+          <Productslider
+          headerLine="Mobiles"
+        /><br/><br/>
         </div>
       
         <br/>

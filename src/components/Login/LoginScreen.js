@@ -77,7 +77,6 @@ function Login(props) {
         onHide={props.onHide}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
-
       >        
         <Modal.Body>
           <Row>
