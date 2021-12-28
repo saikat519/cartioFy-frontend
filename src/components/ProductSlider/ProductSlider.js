@@ -38,7 +38,7 @@ function ProductSlider(props) {
                 <Col className='d-flex flex-row'><span className='prod-header'>{props.headerLine}</span></Col>
             <Col></Col>
             <Col></Col>
-            <Col className='d-flex flex-row-reverse'><Button variant="contained" className='m-3'>VIEW ALL</Button></Col>
+            <Col className='d-flex flex-row-reverse'><Button variant="contained" className='m-3 btn-grad'>VIEW ALL</Button></Col>
             </Row>
 
             <Carousel responsive={responsive}>

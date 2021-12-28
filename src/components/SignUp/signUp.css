@@ -24,3 +24,10 @@ h1:after, h2:after, h3:after, h4:after, h5:after, h6:after{
     display: block;
   }
 
+  .modal-backdrop {
+    z-index: 100000 !important;
+  }
+
+  .modal {
+    z-index: 100001 !important;
+  }

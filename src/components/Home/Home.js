@@ -44,6 +44,18 @@ function Home(props) {
           <Productslider
             headerLine="Trending Offers"
           />
+          <Productslider
+          headerLine="Fashion"
+          />
+          <Productslider
+          headerLine="Electronics"
+          />
+          <Productslider
+          headerLine="Home appliances"
+          />
+          <Productslider
+          headerLine="Mobiles"
+        />
         </div>
       
         <br/>
