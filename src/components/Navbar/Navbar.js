@@ -3,7 +3,6 @@ import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
@@ -13,7 +12,8 @@ import './Navbar.css';
 import { auth } from "../../firebase";
 import AddShoppingCartSharpIcon from '@material-ui/icons/AddShoppingCartSharp';
 import { Link } from 'react-router-dom';
-import {Row,Col} from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap';
+import logo from '../../images/logo.svg'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -86,9 +86,10 @@ export default function Navbar(props) {
   
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed"
-      color="default"
-      elevation={0}
+      <AppBar
+      position="fixed"
+      color="transparent"
+      
       >
         <Toolbar>
           <Link to='/' style={{ color: 'black' }}>
@@ -98,9 +99,9 @@ export default function Navbar(props) {
                 component="div"
                 edge="start"
                 color="inherit"
-                sx={{ mr: 2 }}
+                sx={{ mr: 2,display: { xs: 'none', md: 'flex' }  }}
               >
-                Cartiofy
+                <img src={logo} className='logo' alt="Logo" />
               </Typography>
           </Link>
           <Search style={{border:"1px solid black"}}>
@@ -116,7 +117,6 @@ export default function Navbar(props) {
           {user ?
             <Button className='btn-auth' onClick={logOut}>LOG OUT</Button>
             :
-            
           <Row>
           <Col><Button className='btn-auth' onClick={setSignup}>SIGNUP</Button></Col>
           <Col><Button className='btn-auth' onClick={setLogin}>LOGIN</Button></Col>

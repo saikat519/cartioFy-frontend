@@ -1,6 +1,8 @@
 import React from 'react'
-import {Carousel, Container} from 'react-bootstrap'
-import karolina from '../../images/karolina.jpg'
+import {Carousel} from 'react-bootstrap'
+import flex1 from '../../images/flex1.jpg'
+import flex2 from '../../images/flex2.jpg'
+import flex3 from '../../images/flex3.jpg'
 import headphone from '../../images/headphone.jpg'
 import Productslider from '../ProductSlider/ProductSlider'
 import './Home.css'
@@ -13,7 +15,7 @@ function Home(props) {
         <Carousel.Item interval={1000}>
           <img
             className="d-block w-100"
-            src={headphone}
+            src={flex1}
             alt="First slide"
             height={400}
           />
@@ -22,7 +24,7 @@ function Home(props) {
         <Carousel.Item interval={500}>
           <img
             className="d-block w-100"
-            src={karolina}
+            src={flex1}
             alt="Second slide"
             height={400}
           />
@@ -31,7 +33,7 @@ function Home(props) {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src={headphone}
+            src={flex3}
             alt="Third slide"
             height={400}
           />

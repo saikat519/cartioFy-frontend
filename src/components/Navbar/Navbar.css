@@ -10,7 +10,11 @@
     cursor: pointer;
   }
 
-  
+  .logo{
+    height: 60px;
+    width: 90px;
+  }
+
   .header__optionLineOne {
     font-size: 12px;
   }
@@ -30,31 +34,23 @@
   .header__basketCount {
     margin-left: 10px;
     margin-right: 10px;
-    color:black;
+    color:#e09129;
     font-weight: 400;
     font-size: 18px;
   }
   .header__optionBasket__icon {
     padding:5px;
-    color:black;
+    color:#e09129;
     margin-left: 20px;
   }
-.header__basketCount:hover{
-    color:#e09129;
-}
- 
 
-.header__optionBasket__icon:hover {
-    color:#e09129;
-}
 
 a:link{
     text-decoration: none!important;
 }
-
     
 
-.btn-auth {background-image: linear-gradient(to right, #F09819 0%, #EDDE5D  51%, #F09819  100%)}
+.btn-auth {background-image: linear-gradient(to right, #F09819 0%, #ddcf4f  51%, #F09819  100%)}
 .btn-auth {
    padding: 10px;
    text-align: center;
@@ -62,7 +58,7 @@ a:link{
    transition: 0.5s;
    background-size: 200% auto;
    color: white;            
-   box-shadow: 0 0 20px #eee;
+   /* box-shadow: 0 0 20px #eee; */
    border-radius: 10px;
    display: block;
  }
