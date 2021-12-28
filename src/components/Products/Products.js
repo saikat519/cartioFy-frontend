@@ -3,9 +3,9 @@ import { Card, Container } from 'react-bootstrap';
 import karolina from '../../images/karolina.jpg';
 import Button from '@material-ui/core/Button';
 import AddShoppingCartSharpIcon from '@material-ui/icons/AddShoppingCartSharp';
-import { useStateValue } from "../../StateProvider"; 
-import Login from '../Login/LoginScreen';
-import Signup from '../SignUp/SignUp';
+import { useStateValue } from "../../StateProvider"
+import Login from '../Login/LoginScreen'
+import Signup from '../SignUp/SignUp'
 
 function Products() {
     const [{ user }, dispatch] = useStateValue();
