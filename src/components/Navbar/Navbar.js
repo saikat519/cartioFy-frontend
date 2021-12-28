@@ -13,6 +13,7 @@ import './Navbar.css';
 import { auth } from "../../firebase";
 import AddShoppingCartSharpIcon from '@material-ui/icons/AddShoppingCartSharp';
 import { Link } from 'react-router-dom';
+import {Row,Col} from 'react-bootstrap'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -113,20 +114,20 @@ export default function Navbar(props) {
           </Search>
           <div className='d-flex justify-content-end flex-grow-1'>
           {user ?
-            <Button className='btn-auth' onClick={logOut} sx={{mr:4}}>LOG OUT</Button>
+            <Button className='btn-auth' onClick={logOut}>LOG OUT</Button>
             :
             
-          <>
-          <Button className='btn-auth' onClick={setSignup} sx={{mr:4}}>SIGN UP</Button>
-          <Button className='btn-auth' onClick={setLogin} sx={{mr:4}}>LOGIN</Button>
-          </>
+          <Row>
+          <Col><Button className='btn-auth' onClick={setSignup}>SIGNUP</Button></Col>
+          <Col><Button className='btn-auth' onClick={setLogin}>LOGIN</Button></Col>
+          </Row>
           }
           <Link to='/cart'>
             <div className="header__optionBasket">
-            <span className="header__optionBasket__icon mt-3">
+            <span className="header__optionBasket__icon">
             <AddShoppingCartSharpIcon  style={{ fontSize: 29 }}/>
             </span>
-            <span className="header__basketCount mt-3">
+            <span className="header__basketCount">
               {cart?.length}
             </span>
             </div>

@@ -56,8 +56,7 @@ a:link{
 
 .btn-auth {background-image: linear-gradient(to right, #F09819 0%, #EDDE5D  51%, #F09819  100%)}
 .btn-auth {
-   margin: 15px;
-   /* padding: 15px 45px; */
+   padding: 10px;
    text-align: center;
    text-transform: uppercase;
    transition: 0.5s;
