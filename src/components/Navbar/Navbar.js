@@ -11,7 +11,8 @@ import Button from '@mui/material/Button';
 import { useStateValue } from "../../StateProvider";
 import './Navbar.css';
 import { auth } from "../../firebase";
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import AddShoppingCartSharpIcon from '@material-ui/icons/AddShoppingCartSharp';
+import { Link } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -46,10 +47,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '70ch',
+    [theme.breakpoints.up('xs')]: {
+      width: '10ch',
       '&:focus': {
-        width: '75ch',
+        width: '12ch',
+      },
+    },
+    [theme.breakpoints.up('sm')]: {
+      width: '40ch',
+      '&:focus': {
+        width: '55ch',
       },
     },
   },
@@ -57,7 +64,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 export default function Navbar(props) {
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user,cart }, dispatch] = useStateValue();
   const logOut = () => {
   auth.signOut()
   .then(function() {
@@ -74,11 +81,8 @@ export default function Navbar(props) {
    
   }
 
-  const { setSignup, setLogin, isLogin, isSignup, classes } = props;
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 100
-  });
+  const { setSignup, setLogin } = props;
+  
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed"
@@ -86,18 +90,19 @@ export default function Navbar(props) {
       elevation={0}
       >
         <Toolbar>
-          
-          <Typography
-            variant="h4"
-            noWrap
-            component="div"
-            edge="start"
-            color="inherit"
-            sx={{ mr: 4 }}
-          >
-            Cartiofy
-          </Typography>
-          <Search sx={{ mr: 4 }} style={{border:"1px solid black"}}>
+          <Link to='/' style={{ color: 'black' }}>
+              <Typography
+                variant="h4"
+                noWrap
+                component="div"
+                edge="start"
+                color="inherit"
+                sx={{ mr: 4 }}
+              >
+                Cartiofy
+              </Typography>
+          </Link>
+          <Search sx={{ mr: 15 }} style={{border:"1px solid black"}}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -107,14 +112,25 @@ export default function Navbar(props) {
             />
           </Search>
           {user ?
-            <Button color="inherit" onClick={logOut}>LOG OUT</Button>
+            <Button color="inherit" onClick={logOut} sx={{mr:4}}>LOG OUT</Button>
             :
             
           <>
           <Button color="inherit" onClick={setSignup}>SIGN UP</Button>
-          <Button color="inherit" onClick={setLogin}>LOGIN</Button>
+          <Button color="inherit" onClick={setLogin} sx={{mr:4}}>LOGIN</Button>
           </>
           }
+          <Link to='/cart'>
+            <div className="header__optionBasket">
+            <span className="header__optionBasket__icon">
+            <AddShoppingCartSharpIcon  style={{ fontSize: 29 }}/>
+            </span>
+            <span className="header__basketCount">
+              {cart?.length}
+            </span>
+            </div>
+          </Link>
+          
         </Toolbar>
         
       </AppBar>
