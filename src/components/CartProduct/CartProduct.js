@@ -17,7 +17,7 @@ const CartProduct = forwardRef((props,ref) => {
     return (
 
        
-        <div className='cartProduct' ref={ref}>
+        <div className='cartProduct justify-content-evenly' ref={ref}>
             <img src={image} alt="Cart product"  className='cartProduct__image' />
             <div className='product__info'>
                 <p className='cartProduct__title'>{title}</p>                
