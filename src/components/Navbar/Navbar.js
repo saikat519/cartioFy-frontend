@@ -13,7 +13,7 @@ import { auth } from "../../firebase";
 import AddShoppingCartSharpIcon from '@material-ui/icons/AddShoppingCartSharp';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
-import logo from '../../images/logo.svg'
+import logo from '../../images/logo.png'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
