@@ -3,6 +3,7 @@ import './App.css';
 import LoginScreen from './components/Login/LoginScreen';
 import Navbar from './components/Navbar/Navbar';
 import SignUp from './components/SignUp/SignUp';
+import MyCart from './components/MyCart/MyCart';
 import Home from './components/Home/Home';
 import { useStateValue } from "./StateProvider"; 
 import {
@@ -46,7 +47,15 @@ function App() {
   return (
     <div className="App">
       <Router>
-          <Switch>
+        <Switch>
+          <Route path='/cart'>
+              <Navbar
+              setLogin={() =>{ setisLogin(!isLogin) }}
+              setSignup={() =>{ setisSignup(!isSignup) }}
+            />
+            <br/><br/><br/>
+            <MyCart />
+          </Route>
           
           <Route path="/">
             <Navbar
